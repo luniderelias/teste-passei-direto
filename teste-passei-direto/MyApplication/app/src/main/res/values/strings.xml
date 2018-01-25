@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PasseiDireto</string>
+    <string name="title_search">Busca</string>
+    <string name="title_favorites">Favoritos</string>
+</resources>
