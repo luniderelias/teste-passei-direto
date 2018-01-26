@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">PasseiDireto</string>
     <string name="title_search">Busca</string>
+    <string name="search">Pesquisar</string>
     <string name="title_favorites">Favoritos</string>
+    <string name="searching_materials">Buscando materiais</string>
+    <string name="please_wait">Por favor, aguarde</string>
+    <string name="no_material_found">Não há materiais</string>
+    <string name="connection_dialog_title">Sem conexão com a Internet</string>
+    <string name="connection_dialog_message">Por favor, conecte-se à internet para continuar</string>
+    <string name="ok">OK</string>
 </resources>
