@@ -37,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
+    @AfterViews
+    public void afterViews(){
+        mTextMessage = (TextView) findViewById(R.id.message);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        switchFragment("SearchFragment");
+    }
+
     private void switchFragment(String fragment){
         switch(fragment){
             case "SearchFragment":
@@ -50,13 +58,6 @@ public class MainActivity extends AppCompatActivity {
                         ,R.id.container,this);
                 break;
         }
-   }
-
-    @AfterViews
-    public void afterViews(){
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
 }

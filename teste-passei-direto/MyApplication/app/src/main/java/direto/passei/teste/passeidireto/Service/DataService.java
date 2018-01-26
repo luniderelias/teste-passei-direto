@@ -29,8 +29,6 @@ import retrofit2.Response;
 @EBean
 public class DataService {
 
-    String rest = "https://search-api.passeidireto.com/api/Search/GlobalSearch?query=teste&contenttypeids=1&pagenumber=0&pagesize=20&order=2";
-
     @OrmLiteDao(helper = DatabaseHelper.class)
     Dao<Material, Integer> materialDao;
 
