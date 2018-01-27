@@ -30,7 +30,7 @@
             android:layout_marginRight="16dp" />
 
         <ListView
-            android:id="@+id/searchListView"
+            android:id="@+id/materialsListView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintLeft_toLeftOf="parent"

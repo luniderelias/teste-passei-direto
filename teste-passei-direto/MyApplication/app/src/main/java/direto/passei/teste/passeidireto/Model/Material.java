@@ -30,7 +30,8 @@ public class Material {
 
     public Material(){}
 
-    public Material(String name, String subjectName, String universityName, Boolean favorite){
+    public Material(Integer id, String name, String subjectName, String universityName, Boolean favorite){
+        this.id = id;
         this.name = name;
         this.subjectName = subjectName;
         this.universityName = universityName;

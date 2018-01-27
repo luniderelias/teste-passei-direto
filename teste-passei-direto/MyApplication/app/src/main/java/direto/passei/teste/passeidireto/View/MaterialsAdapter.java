@@ -1,16 +1,26 @@
 package direto.passei.teste.passeidireto.View;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
 
 import java.util.List;
 
 import direto.passei.teste.passeidireto.Model.Material;
 import direto.passei.teste.passeidireto.R;
+import direto.passei.teste.passeidireto.Service.DataService;
+import direto.passei.teste.passeidireto.Util.ActivityUtil;
 
 /**
  * Created by lunid on 25/01/2018.
@@ -21,10 +31,12 @@ public class MaterialsAdapter extends BaseAdapter {
     private List<Material> materials;
     private LayoutInflater inflater;
     private ItemViewHolder itemViewHolder;
+    private Context context;
 
     public MaterialsAdapter(Context context, List<Material> materials) {
         this.materials = materials;
         this.inflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @Override
@@ -49,7 +61,50 @@ public class MaterialsAdapter extends BaseAdapter {
 
         setItemView(position);
 
+        setMaterialFavorite(itemViewHolder, (MainActivity_) context, position);
+
+        favoriteClick(itemViewHolder, (MainActivity_) context, position);
+
         return itemView;
+    }
+
+    private void favoriteClick(final ItemViewHolder itemViewHolder,
+                               final MainActivity_ context,
+                               final Integer position) {
+        itemViewHolder.favoriteImageView
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (context.isMaterialFavorite(getItem(position))) {
+                            context.removeFavoriteMaterial(getItem(position));
+                            changeFavoriteIcon(itemViewHolder,
+                                    context.getResources()
+                                            .getDrawable(R.drawable.ic_empty_star_material_design));
+                        } else {
+                            context.setFavoriteMaterial(getItem(position));
+                            changeFavoriteIcon(itemViewHolder,
+                                    context.getResources()
+                                            .getDrawable(R.drawable.ic_star_material_design));
+                        }
+                    }
+                });
+    }
+
+    public void setMaterialFavorite(ItemViewHolder itemViewHolder,
+                                    MainActivity_ context,
+                                    int position) {
+        if (context.isMaterialFavorite(getItem(position)))
+            changeFavoriteIcon(itemViewHolder,
+                    context.getResources()
+                            .getDrawable(R.drawable.ic_star_material_design));
+        else
+            changeFavoriteIcon(itemViewHolder,
+                    context.getResources()
+                            .getDrawable(R.drawable.ic_empty_star_material_design));
+    }
+
+    public void changeFavoriteIcon(ItemViewHolder itemViewHolder, Drawable drawable) {
+        itemViewHolder.favoriteImageView.setImageDrawable(drawable);
     }
 
     private View setItemViewHolder(View itemView, ViewGroup parent) {
@@ -85,9 +140,11 @@ public class MaterialsAdapter extends BaseAdapter {
 
     private static class ItemViewHolder {
 
-        TextView contentNameTextView;
-        TextView subjectNameTextView;
-        TextView universityNameTextView;
+        TextView contentNameTextView,
+                subjectNameTextView,
+                universityNameTextView;
+
+        ImageView favoriteImageView;
 
         private ItemViewHolder(View view) {
             contentNameTextView =
@@ -96,6 +153,8 @@ public class MaterialsAdapter extends BaseAdapter {
                     (TextView) view.findViewById(R.id.subjectNameTextView);
             universityNameTextView =
                     (TextView) view.findViewById(R.id.universityNameTextView);
+            favoriteImageView =
+                    (ImageView) view.findViewById(R.id.favoriteImageView);
         }
     }
 }
