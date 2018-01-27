@@ -7,4 +7,6 @@
     <dimen name="app_name">40sp</dimen>
     <dimen name="card_subtitle">18sp</dimen>
     <dimen name="card_content">16sp</dimen>
+    <dimen name="card_star_margin">8dp</dimen>
+    <dimen name="card_star_size">40dp</dimen>
 </resources>

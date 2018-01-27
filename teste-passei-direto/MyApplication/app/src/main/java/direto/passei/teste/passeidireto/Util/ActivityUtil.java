@@ -25,7 +25,6 @@ public class ActivityUtil {
         context.getSupportFragmentManager()
                 .beginTransaction()
                 .replace(resIdContainer, fragment)
-                .addToBackStack("")
                 .commit();
         context.getSupportFragmentManager().executePendingTransactions();
     }

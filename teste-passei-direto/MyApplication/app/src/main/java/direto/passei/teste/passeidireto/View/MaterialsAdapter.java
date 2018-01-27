@@ -126,7 +126,7 @@ public class MaterialsAdapter extends BaseAdapter {
 
     private void setMaterialFields(Material material) {
         itemViewHolder.contentNameTextView.setText(
-                "Nome: " + material.getName());
+                material.getName());
         itemViewHolder.subjectNameTextView.setText(
                 "Assunto: " + material.getSubjectName());
         itemViewHolder.universityNameTextView.setText(

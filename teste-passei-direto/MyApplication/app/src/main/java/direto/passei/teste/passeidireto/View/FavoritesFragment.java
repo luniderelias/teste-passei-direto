@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.j256.ormlite.field.DatabaseField;
 
@@ -40,30 +41,38 @@ public class FavoritesFragment extends Fragment {
     @ViewById(R.id.searchButton)
     Button searchButton;
 
+    @ViewById(R.id.noContentTextView)
+    TextView  noContentTextView;
+
     @Bean
     DataService dataService;
 
     @AfterViews
-    public void afterViews(){
+    public void afterViews() {
         removeSearchVisibility();
         getFavoriteMaterials();
     }
 
-    private void removeSearchVisibility(){
+    private void removeSearchVisibility() {
         searchEditText.setVisibility(View.GONE);
         searchButton.setVisibility(View.GONE);
     }
 
     @Background
-    public void getFavoriteMaterials(){
+    public void getFavoriteMaterials() {
         favoriteMaterials = dataService.getFavoriteMaterials();
         showAdapter();
     }
 
     @UiThread
     void showAdapter() {
-        if (favoriteMaterials != null)
+        if(favoriteMaterials.size() > 0) {
+            noContentTextView.setVisibility(View.GONE);
             materialsListView.setAdapter(
                     new MaterialsAdapter(getContext(), favoriteMaterials));
+        }else{
+            noContentTextView.setText(getString(R.string.no_favorite));
+            noContentTextView.setVisibility(View.VISIBLE);
+        }
     }
 }

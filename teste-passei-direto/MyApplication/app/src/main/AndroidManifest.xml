@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/passei_direto_icon"
+        android:icon="@drawable/passei_direto_round_icon"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/passei_direto_icon"
+        android:roundIcon="@drawable/passei_direto_round_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 

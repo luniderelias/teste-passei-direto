@@ -2,8 +2,10 @@ package direto.passei.teste.passeidireto.View;
 
 import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -35,25 +37,29 @@ public class SearchFragment extends Fragment {
     @ViewById(R.id.searchEditText)
     EditText searchEditText;
 
+    @ViewById(R.id.noContentTextView)
+    TextView noContentTextView;
+
     ArrayList<Material> materials;
     ProgressDialog progressDialog;
 
     @AfterViews
-    public void afterViews(){
+    public void afterViews() {
+        noContentTextView.setVisibility(View.GONE);
     }
 
     @Background
-    public void showMaterials(){
+    public void showMaterials() {
         getMaterials();
         showAdapter();
     }
 
     @Click(R.id.searchButton)
-    public void click(){
+    public void click() {
         showMaterials();
     }
 
-    private void getMaterials(){
+    private void getMaterials() {
         callProgressDialog(getString(R.string.searching_materials),
                 getString(R.string.please_wait));
         if (ActivityUtil.isConnectedToInternet(getActivity()))
@@ -78,9 +84,16 @@ public class SearchFragment extends Fragment {
 
     @UiThread
     void showAdapter() {
-        if (materials != null)
+        if (materials.size() > 0){
+            noContentTextView.setVisibility(View.GONE);
             materialsListView.setAdapter(
                     new MaterialsAdapter(getContext(), materials));
+        }
+        else{
+            noContentTextView.setText(getString(R.string.no_content));
+            noContentTextView.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @UiThread
