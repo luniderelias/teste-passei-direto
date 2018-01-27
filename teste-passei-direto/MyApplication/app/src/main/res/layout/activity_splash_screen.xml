@@ -2,28 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/gradient"
     tools:context="direto.passei.teste.passeidireto.View.SplashScreenActivity_">
 
-    <LinearLayout
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:src="@drawable/passei_direto_round_icon" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/passei_direto_background" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name_splash"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-condensed"
-            android:textSize="@dimen/app_name" />
-    </LinearLayout>
 </FrameLayout>

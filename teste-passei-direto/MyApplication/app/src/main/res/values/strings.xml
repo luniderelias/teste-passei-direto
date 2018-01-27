@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Passei Direto</string>
+    <string name="no_content">Nenhum conteúdo encontrado</string>
+    <string name="no_favorite">Não há favoritos</string>
     <string name="app_name_splash">
     passei<b>direto</b>
     </string>
@@ -12,7 +14,10 @@
     <string name="connection_dialog_title">Sem conexão com a Internet</string>
     <string name="connection_dialog_message">Por favor, conecte-se à internet para continuar</string>
     <string name="ok">OK</string>
-
+    <string name="yes">SIM</string>
+    <string name="no">NÃO</string>
+    <string name="exit_application">Fechar o Aplicativo</string>
+    <string name="are_you_sure_about_leaving_application">Tem certeza que deseja sair do aplicativo?</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

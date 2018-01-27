@@ -5,8 +5,10 @@
     <color name="colorPrimaryLight">#ffc046</color>
     <color name="colorAccent">#ffc046</color>
     <color name="white">#f0f0f0</color>
-    <color name="cardColorWhite">#dfdfdf</color>
+    <color name="cardColor">#ffecb3</color>
     <color name="textColorDark">#000000</color>
 
     <color name="black_overlay">#66000000</color>
+
+
 </resources>
