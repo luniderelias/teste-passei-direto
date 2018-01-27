@@ -136,8 +136,7 @@ public class MaterialsAdapter extends BaseAdapter {
     private void setNoMaterialText() {
         itemViewHolder.subjectNameTextView.setText(R.string.no_material_found);
     }
-
-
+    
     private static class ItemViewHolder {
 
         TextView contentNameTextView,
