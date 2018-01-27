@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">PasseiDireto</string>
+    <string name="app_name">Passei Direto</string>
+    <string name="app_name_splash">
+    passei<b>direto</b>
+    </string>
     <string name="title_search">Busca</string>
     <string name="search">Pesquisar</string>
     <string name="title_favorites">Favoritos</string>
@@ -9,4 +12,8 @@
     <string name="connection_dialog_title">Sem conexão com a Internet</string>
     <string name="connection_dialog_message">Por favor, conecte-se à internet para continuar</string>
     <string name="ok">OK</string>
+
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
