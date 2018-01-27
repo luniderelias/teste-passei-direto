@@ -29,8 +29,8 @@ public class SearchFragment extends Fragment {
     @Bean
     DataService dataService;
 
-    @ViewById(R.id.searchListView)
-    ListView searchListView;
+    @ViewById(R.id.materialsListView)
+    ListView materialsListView;
 
     @ViewById(R.id.searchEditText)
     EditText searchEditText;
@@ -78,8 +78,9 @@ public class SearchFragment extends Fragment {
 
     @UiThread
     void showAdapter() {
-        if (materials.size() > 0)
-            searchListView.setAdapter(new MaterialsAdapter(getContext(), materials));
+        if (materials != null)
+            materialsListView.setAdapter(
+                    new MaterialsAdapter(getContext(), materials));
     }
 
     @UiThread

@@ -13,6 +13,7 @@ import org.androidannotations.ormlite.annotations.OrmLiteDao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import direto.passei.teste.passeidireto.Model.Material;
@@ -50,10 +51,14 @@ public class DataService {
 
             for (int id = 0; id < foundMaterialsList.size(); id++)
                 addFoundMaterial(id, foundMaterialsList);
-            persistAllMaterialsFound();
+            //persistAllMaterialsFound();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return foundMaterials;
+    }
+
+    public synchronized ArrayList<Material> getQueriedMaterials() {
         return foundMaterials;
     }
 
@@ -69,19 +74,15 @@ public class DataService {
     private void addFoundMaterial(int id, ArrayList foundMaterialsList) {
         LinkedTreeMap materialLinkedTreeMap = (LinkedTreeMap)
                 foundMaterialsList.get(id);
-        foundMaterials.add(id, new Material(
+        foundMaterials.add(new Material(
+                ((Double) materialLinkedTreeMap.get("Id")).intValue(),
                 materialLinkedTreeMap.get("Name").toString(),
                 materialLinkedTreeMap.get("SubjectName").toString(),
                 materialLinkedTreeMap.get("UniversityName").toString(),
                 favorite));
     }
 
-    private void persistAllMaterialsFound() {
-        for (int ii = 0; ii < foundMaterials.size(); ii++)
-            persistMaterial(foundMaterials.get(ii));
-    }
-
-    private void persistMaterial(Material material) {
+    public void persistMaterial(Material material) {
         try {
             materialDao.createOrUpdate(material);
         } catch (Exception e) {
@@ -89,4 +90,29 @@ public class DataService {
         }
     }
 
+    public boolean isMaterialFavorite(Material material) {
+        try {
+            return materialDao.idExists(material.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void removeFavoriteMaterial(Material material) {
+        try {
+            materialDao.delete(material);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Material> getFavoriteMaterials() {
+        try {
+            return materialDao.queryForAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -7,15 +7,21 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 
+import direto.passei.teste.passeidireto.Model.Material;
 import direto.passei.teste.passeidireto.R;
+import direto.passei.teste.passeidireto.Service.DataService;
 import direto.passei.teste.passeidireto.Util.ActivityUtil;
 
 @EActivity(R.layout.activity_search)
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+
+    @Bean
+    DataService dataService;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchFragment("SearchFragment");
+    }
+
+    public boolean isMaterialFavorite(Material material){
+        return dataService.isMaterialFavorite(material);
+    }
+
+    public void setFavoriteMaterial(Material material){
+        dataService.persistMaterial(material);
+    }
+
+    public void removeFavoriteMaterial(Material material){
+        dataService.removeFavoriteMaterial(material);
     }
 
     private void switchFragment(String fragment){
